@@ -1,0 +1,5 @@
+title: My Portfolio
+description: A personal portfolio site
+baseurl: "" # Set to "/" if using the root URL
+url: "https://harishrsharma.github.io"
+theme: minima # or the theme you are using
