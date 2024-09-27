@@ -176,10 +176,12 @@ footer {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease;
+    
 }
 
 .card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card h2 {
@@ -336,4 +338,32 @@ footer {
     .nav-link {
         padding: 10px 0;
     }
+}
+
+/* Content Section */
+#content-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.education-section, .experience-section {
+    width: 48%;
+}
+
+.details {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
