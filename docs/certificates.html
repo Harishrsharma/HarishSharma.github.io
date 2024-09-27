@@ -3,36 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certifications - [Your Name]</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <title>Certifications</title>
 </head>
 <body>
     <!-- Navigation Bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="certificates.html">Certifications</a></li>
-                <li><a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
-                <li><a href="resume.pdf" download>Download Resume</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="certification.html" class="nav-link">Certifications</a>
+        </div>
+    </nav>
 
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <h1>Certifications</h1>
-        <ul>
-            <li>Machine Learning by Andrew Ng - Coursera</li>
-            <li>Data Science Professional Certificate - IBM</li>
-            <li>Python for Data Science and AI - edX</li>
-        </ul>
-    </section>
+    <!-- Certification Cards -->
+    <div class="certificates-container">
+        <!-- Certification Card 1 -->
+        <div class="cert-card-container">
+            <div class="cert-card">
+                <h3>JavaScript Certification</h3>
+                <a href="https://link-to-certificate.com" target="_blank" class="cert-link">View Certificate</a>
+            </div>
+            <div class="skills-block">
+                <p>Skills Learned:</p>
+                <ul>
+                    <li>JavaScript Basics</li>
+                    <li>DOM Manipulation</li>
+                    <li>Event Handling</li>
+                    <li>Asynchronous JavaScript</li>
+                </ul>
+            </div>
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
-    </footer>
+        <!-- Certification Card 2 -->
+        <div class="cert-card-container">
+            <div class="cert-card">
+                <h3>Python Certification</h3>
+                <a href="https://link-to-certificate.com" target="_blank" class="cert-link">View Certificate</a>
+            </div>
+            <div class="skills-block">
+                <p>Skills Learned:</p>
+                <ul>
+                    <li>Python Fundamentals</li>
+                    <li>Data Structures</li>
+                    <li>Object-Oriented Programming</li>
+                    <li>APIs and Libraries</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Add more certification cards as needed -->
+    </div>
 </body>
 </html>
