@@ -1,369 +1,38 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-/* Navigation Bar Styling */
-nav {
-    background-color: #126986;
-    padding: 15px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-}
-
-nav ul li a:hover {
-    background-color: #005f7a;
-    border-radius: 5px;
-}
-/* About Me Section */
-#about-me {
-    text-align: center;
-    padding: 100px 20px;
-    background-color: #fff;
-}
-
-#about-me h1 {
-    font-size: 42px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-#about-me p {
-    font-size: 18px;
-    color: #a12b2b;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
+/* Custom navbar styles */
 .navbar {
-    background-color: #37978e;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #343a40; /* Darker background for navbar */
 }
 
-.navbar-container {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.navbar .nav-link {
+    color: #f8f9fa;
 }
 
-.nav-link {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    transition: background-color 0.3s;
+.navbar .nav-link:hover {
+    color: #ffb700; /* Custom hover color */
 }
 
-.nav-link:hover {
-    background-color: #555;
-    border-radius: 5px;
-}
-
-/* Certificate Cards */
-.certificates-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 20px;
-    margin-top: 20px;
-}
-/* About Me Section */
-#about-me {
-    text-align: center;
-    padding: 100px 20px;
-    background-color: #fff;
-}
-
-#about-me h1 {
-    font-size: 42px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-#about-me p {
-    font-size: 18px;
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Intro Section */
-#intro {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-#intro h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-#intro p {
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: relative;
-    width: 100%;
-    bottom: 0;
-}
-
-/* Projects Section */
-#projects {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-#projects h1 {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 40px;
-    color: #333;
-}
-
-/* Project Container */
-.project-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-/* Project Card */
+/* Custom card styles */
 .card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow to cards */
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.card p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.card a.button {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #008cba;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.card a.button:hover {
-    background-color: #005f7a;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .project-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card {
-        width: 100%;
-        max-width: 90%;
-    }
-}
-
-
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    #about-me h1 {
-        font-size: 32px;
-    }
-
-    #about-me p {
-        font-size: 16px;
-    }
-
-    #intro h2 {
-        font-size: 20px;
-    }
-}
-/* Card Container */
-.cert-card-container {
-    position: relative;
-    width: 300px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.cert-card-container:hover .skills-block {
-    display: block;
-}
-
-/* Card Styling */
-.cert-card {
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.cert-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.cert-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.cert-link:hover {
-    background-color: #0056b3;
-}
-
-/* Skills Block (Initially hidden) */
-.skills-block {
-    display: none;
-    padding: 15px;
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.skills-block p {
+.card-title {
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
-.skills-block ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
+.card-footer ul {
+    list-style: none;
+    padding: 0;
 }
 
-.skills-block ul li {
-    margin-bottom: 5px;
+.card-footer ul li {
+    padding: 4px 0;
+    font-size: 0.9rem;
 }
 
-/* Animation for Fade-in effect */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Responsive Navbar */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .nav-link {
-        padding: 10px 0;
-    }
-}
-
-/* Content Section */
-#content-section {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px;
-}
-
-.content-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.education-section, .experience-section {
-    width: 48%;
-}
-
-.details {
-    display: none;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+/* Custom Footer */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 10px 0;
 }
