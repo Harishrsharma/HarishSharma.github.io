@@ -184,7 +184,7 @@ export default function App() {
             className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 mb-8 font-mono text-xs tracking-wide text-slate-600"
           >
             <span className="w-2 h-2 rounded-full bg-brand-500 inline-block" />
-            OPEN TO DATA &amp; BI ROLES · KOBLENZ, <GERMANY></GERMANY> (Open for relocation)
+            OPEN TO DATA &amp; BI ROLES · KOBLENZ, GERMANY (Open for relocation)
           </motion.div>
 
           <motion.h1
