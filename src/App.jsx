@@ -84,7 +84,7 @@ const SECTIONS = [
 function DownloadCVButton() {
   return (
     <a
-      href="/Harish_Sharma_CV.pdf"
+      href={`${import.meta.env.BASE_URL}Harish_Sharma_CV.pdf`}
       className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-700 hover:to-blue-800 text-white font-bold py-2 px-5 rounded-xl shadow-xl transition-all duration-160"
       download
     >
