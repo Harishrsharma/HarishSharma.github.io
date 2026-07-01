@@ -461,7 +461,7 @@ export default function App() {
         </h2>
         <p className="text-slate-300 max-w-xl mx-auto mb-8">
           Open to Data Analyst / BI, Analytics &amp; Data Engineering, and
-          ML/AI Engineer roles in Koblenz, Frankfurt, and remote across
+          ML/AI Engineer roles across
           Germany.
         </p>
         <div className="flex flex-wrap justify-center gap-4 mb-14">
