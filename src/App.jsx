@@ -1,342 +1,496 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
-import './index.css'; // or wherever Tailwind is imported
-
-
-// ---- Data ----
-const skills = [
-  "Python", "SQL", "R", "Java", "Pandas", "NumPy", "scikit-learn", "PyTorch",
-  "TensorFlow", "Langchain", "PowerBI", "Tableau", "Looker", "Jira", "Ms Excel",
-  "FastAPI", "Flask", "RESTApi", "ETL Pipelines",
-  "PostgreSQL", "Neo4j", "Snowflake (familiar)", "Git", "Docker", "Data Bricks"
-];
+import "./index.css";
 
 const stats = [
-  { label: "Years Experience", value: "3+" },
-  { label: "Projects Completed", value: "10+" },
-  { label: "Dashboards Built", value: "6+" },
-  { label: "Certifications", value: "12+" },
+  { value: "3.5yrs", label: "Professional analytics experience" },
+  { value: "10+", label: "Power BI dashboards & KPI frameworks shipped" },
+  { value: "Daily", label: "AI-assisted development with Claude & LangChain" },
+  { value: "C1/B1", label: "English fluent · German intermediate" },
+];
+
+const aboutBadges = [
+  { emoji: "📊", label: "Business-first analytics" },
+  { emoji: "🧩", label: "Stakeholder translation" },
+  { emoji: "🤖", label: "AI-enabled workflows" },
+  { emoji: "🔍", label: "Data quality by default" },
+];
+
+const toolkit = [
+  {
+    title: "BI & Visualization",
+    level: "Professional",
+    tags: ["Power BI", "DAX", "Power Query", "Tableau"],
+  },
+  {
+    title: "SQL & Data Modeling",
+    level: "Advanced",
+    tags: ["PostgreSQL", "MySQL", "CTEs", "Window fns", "Optimization"],
+  },
+  {
+    title: "Python & ML",
+    level: "Advanced",
+    tags: ["Pandas", "NumPy", "Scikit-learn", "FastAPI"],
+  },
+  {
+    title: "AI & Automation",
+    level: "Daily user",
+    tags: ["Claude", "LangChain", "RAG", "n8n", "Power Automate"],
+  },
+  {
+    title: "Data Engineering",
+    level: "Working knowledge",
+    tags: ["ETL", "Pipelines", "dbt", "Neo4j", "Git", "Docker"],
+  },
+];
+
+const certified = [
+  "Tableau Desktop Specialist",
+  "Power BI Desktop",
+  "Business Analyst with Excel",
+  "Data Analytics",
 ];
 
 const experiences = [
   {
+    date: "May 2025 — May 2026",
     role: "Data Analyst",
-    company: "Hangar901 Aircraft Maintenance  , Hahn ",
-    date: "April 2025 - Present",
-    details: [
-      "Built PowerBI dashboards to track daily KPIs—cutting reporting time by 30%.",
-      "Developed a cosine-similarity based employee recommendation engine—accelerating workforce planning by 60%",
-      "Designed a FastAPI service for real-time performance recommendations—enhancing automation and user experience",
-      "Automated ETL pipelines in Python, improving data reliability and reducing manual effort"
+    company: "Hangar901 Aircraft Maintenance GmbH",
+    bullets: [
+      "Built and maintained Power BI dashboards for operational KPIs, performance trends, and management reporting — used daily by operational and senior management teams.",
+      "Built a Python recommendation model (TF-IDF + FastAPI) that reduced operational losses by 10–15% through data-driven decisioning.",
+      "Automated a manual workflow with Power Automate, saving 1–2 hours daily.",
+      "Implemented proactive data-quality and integrity processes, and used Claude and AI tools daily to accelerate reliable analytical development.",
     ],
   },
   {
-    role: "Working Student:- Artificial Intelligence",
-    company: "Seeburger AG , Karlsruhe",
-    date: "April 2024- April 2025",
-    details: [
-      "Implemented Retrieval-Augmented Generation (RAG) pipelines using LLaMA and LangChain",
-      "integrating LangChain’s modular agent and vector store interfaces to improve enterprise document query accuracy",
-      "Built Neo4j knowledge graphs enabling semantic search across internal data.",
-      "Automated AI workflows—cutting prototype-to-deployment time by 40%.",
-      "Created production REST APIs using Flask for AI model integration"
+    date: "Apr 2024 — Apr 2025",
+    role: "Working Student — AI",
+    company: "SEEBURGER AG",
+    bullets: [
+      "Supported data pipeline development and BI reporting using Python and SQL.",
+      "Contributed to AI tooling with LangChain and locally-hosted LLaMA models, supporting adoption of AI-assisted analytics across teams.",
+      "Worked with Neo4j knowledge graphs, supporting senior engineers on graph-based data modeling and analysis.",
+      "Assisted with data modeling and data-warehouse integration for scalable business reporting.",
+    ],
+  },
+  {
+    date: "Jan 2021 — Oct 2021",
+    role: "Data Processing Analyst",
+    company: "Ugam Solutions · Market Research",
+    bullets: [
+      "Developed SQL queries and Python scripts for data processing, transformation, and business reporting.",
+      "Created structured analytical reports and summaries for client stakeholders.",
+      "Recognized for quality of deliverables by the team.",
+    ],
+  },
+  {
+    date: "Oct 2021 — Dec 2021",
+    role: "Market Research Analyst Intern",
+    company: "Coldmail",
+    bullets: [
+      "Analyzed market and consumer data to support business strategy and decision-making.",
     ],
   },
 ];
 
 const projects = [
   {
-    title: "AI-Powered Resume Parser",
-    description: "Extracted structured insights using NLP & LangChain.",
+    tag: "ML · PYTHON",
+    metric: "10–15% ↓",
+    title: "Parts recommendation model",
+    description:
+      "A TF-IDF recommendation engine served through FastAPI, driving data-informed operational decisions and cutting operational losses by 10–15%.",
+    stack: ["TF-IDF", "FastAPI", "Scikit-learn"],
   },
   {
-    title: "Predictive Maintenance",
-    description: "Built ML models to predict equipment failures in aviation.",
+    tag: "BI · POWER BI",
+    metric: "Daily use",
+    title: "Operational KPI dashboards",
+    description:
+      "End-to-end Power BI dashboards and KPI frameworks — Power Query models, DAX measures, and automated refreshes — relied on daily by operational and management teams.",
+    stack: ["Power BI", "DAX", "SQL"],
   },
   {
-    title: "ETL Automation",
-    description: "Streamlined ETL pipelines reducing runtime by 40%.",
+    tag: "AI · LANGCHAIN",
+    metric: "RAG",
+    title: "AI-assisted analytics workflows",
+    description:
+      "RAG systems and agentic automations built with LangChain, the Claude API, and n8n — accelerating analytical development and supporting AI adoption across teams.",
+    stack: ["LangChain", "Claude API", "n8n"],
+  },
+  {
+    tag: "AUTOMATION",
+    metric: "1–2 hrs/day",
+    title: "Manual workflow automation",
+    description:
+      "Replaced a repetitive manual reporting process with a Power Automate flow, freeing 1–2 hours of analyst time every day for higher-value work.",
+    stack: ["Power Automate", "Excel"],
   },
 ];
 
 const certifications = [
-  "AWS Cloud Practitioner",
-  "Microsoft PowerBI Data Analyst Associate",
-  "TensorFlow Developer Certificate",
+  { name: "Tableau Desktop Specialist", year: "2022" },
+  { name: "Power BI Desktop", year: "2025" },
+  { name: "Business Analyst with Excel — Simplilearn", year: "2022" },
+  { name: "Data Analytics", year: "2021" },
 ];
 
 const contactLinks = [
   { label: "LinkedIn", url: "https://linkedin.com/in/harishrsharma" },
-  { label: "GitHub", url: "https://github.com/harishrsharma" },
+  { label: "GitHub", url: "https://github.com/Harishrsharma" },
 ];
 
-const SECTIONS = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "certifications", label: "Certifications" },
-  { id: "contact", label: "Contact" },
-];
+function SectionLabel({ children }) {
+  return (
+    <p className="font-mono text-xs tracking-widest text-brand-600 mb-3">
+      // {children}
+    </p>
+  );
+}
 
-// ---- Components ----
-function DownloadCVButton() {
+function DownloadCVButton({ className = "" }) {
   return (
     <a
       href={`${import.meta.env.BASE_URL}Harish_Sharma_CV.pdf`}
-      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-700 hover:to-blue-800 text-white font-bold py-2 px-5 rounded-xl shadow-xl transition-all duration-160"
       download
+      className={`inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-ink-950 font-bold py-3 px-6 rounded-xl shadow-lg transition-colors ${className}`}
     >
-      Download CV
+      Work with me →
     </a>
   );
 }
 
-function LiveClock() {
-  const [now, setNow] = useState(new Date());
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-  return (
-    <span className="font-mono px-2 py-1 bg-purple-100 rounded text-purple-700 text-xs md:text-sm">
-      {now.toLocaleTimeString()}
-    </span>
-  );
-}
-
-// ---- Main App ----
 export default function App() {
-  const refs = SECTIONS.reduce((acc, s) => {
-    acc[s.id] = useRef();
-    return acc;
-  }, {});
-
-  const handleNavigate = (id) => {
-    refs[id].current.scrollIntoView({ behavior: "smooth" });
+  const refs = {
+    about: useRef(null),
+    toolkit: useRef(null),
+    experience: useRef(null),
+    projects: useRef(null),
+    contact: useRef(null),
   };
 
+  const scrollTo = (id) => refs[id].current?.scrollIntoView({ behavior: "smooth" });
+
   return (
-    <main className="font-sans bg-gray-50 min-h-screen relative overflow-x-hidden">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-20 bg-white/90 backdrop-blur shadow-md w-full flex items-center justify-between px-7 py-3 border-b">
-        <div className="flex items-center gap-5">
-          <span className="text-xl font-bold text-blue-700 tracking-tight">HS</span>
-          {SECTIONS.map(s => (
-            <button
-              key={s.id}
-              onClick={() => handleNavigate(s.id)}
-              className="text-base font-medium px-2 py-1 rounded hover:bg-purple-100 text-purple-600 hover:text-blue-700 transition"
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-4">
-          <LiveClock />
-          <DownloadCVButton />
-        </div>
-      </nav>
-
+    <main className="font-sans bg-slate-50 text-ink-950 min-h-screen overflow-x-hidden">
       {/* Hero */}
-      <header className="pt-20 pb-16 px-5 text-center bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500"
-        >
-          Harish Sharma
-        </motion.h1>
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
-          <Typewriter
-            words={["Data Scientist", "AI/ML Developer", "Data Analyst"]}
-            loop={0}
-            cursor
-            cursorStyle="|"
-            typeSpeed={60}
-            deleteSpeed={40}
-            delaySpeed={1500}
-          />
-        </h2>
-        <p className="font-medium text-gray-600 mb-5">Germany – Open to relocate</p>
-        <DownloadCVButton />
-      </header>
+      <header className="bg-dots bg-slate-100 pt-16 pb-0 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 mb-8 font-mono text-xs tracking-wide text-slate-600"
+          >
+            <span className="w-2 h-2 rounded-full bg-brand-500 inline-block" />
+            OPEN TO DATA &amp; BI ROLES · KOBLENZ / FRANKFURT
+          </motion.div>
 
-      {/* Stats */}
-      <section className="py-12 px-6 flex justify-center">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl w-full">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
-              className="bg-white p-6 rounded-2xl shadow-lg text-center border border-purple-100"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight mb-6 max-w-3xl"
+          >
+            Turning messy data into decisions teams{" "}
+            <span className="text-brand-500">actually trust.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-lg text-slate-600 max-w-xl mb-8"
+          >
+            Data &amp; BI Analyst with 3.5 years building Power BI dashboards,
+            SQL data models, and Python + AI-assisted analytics that
+            operational and management teams rely on daily.
+          </motion.p>
+
+          <div className="flex flex-wrap gap-4 mb-8">
+            <DownloadCVButton />
+            <button
+              onClick={() => scrollTo("experience")}
+              className="bg-white border border-slate-300 hover:border-brand-500 text-ink-950 font-bold py-3 px-6 rounded-xl transition-colors"
             >
-              <h3 className="text-3xl font-bold text-purple-700">{s.value}</h3>
-              <p className="text-gray-600 font-medium">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* About */}
-      <section ref={refs["about"]} className="py-9 px-5 max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white rounded-2xl p-7 shadow-lg"
-        >
-          <h2 className="text-2xl font-bold mb-3 text-blue-700">About Me</h2>
-          <p className="text-lg mb-1 text-gray-800">
-            Data Enthusiast with 3 years experience designing ETL pipelines, dashboards & ML systems.
-            Automated workflows (40% faster), improved data quality (25%), and scaled AI solutions.
-            Analytical depth meets product storytelling to drive insights for business impact.
-          </p>
-          <div className="mt-2 text-gray-700 text-sm font-medium">
-            MSc in Web & Data Science, University of Koblenz (Thesis ongoing).<br />
-            Bachelor of Engineering (Computer Engineering), Mumbai University (2019).
+              See experience
+            </button>
           </div>
-        </motion.div>
-      </section>
 
-      {/* Skills */}
-      <section ref={refs["skills"]} className="py-8 px-5">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-7"
-        >
-          <h2 className="text-2xl font-bold mb-4 text-blue-700">Technical Skills</h2>
-          <div className="flex flex-wrap gap-3">
-            {skills.map(skill => (
-              <span key={skill}
-                className="px-3 py-1 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-lg shadow text-sm font-semibold text-gray-900"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Experience */}
-      <section ref={refs["experience"]} className="py-11 px-4 max-w-4xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl font-bold mb-7 text-purple-700"
-        >
-          Experience
-        </motion.h2>
-        <div className="space-y-7">
-          {experiences.map((exp, idx) => (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-gradient-to-tr from-purple-100 via-blue-50 to-pink-50 rounded-xl p-7 shadow-xl border-l-8 border-blue-400"
-            >
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                <h3 className="font-semibold text-lg">{exp.role} – <span className="font-normal italic">{exp.company}</span></h3>
-                <span className="text-sm text-gray-600">{exp.date}</span>
-              </div>
-              <ul className="list-disc list-inside text-base ml-2 marker:text-blue-700">
-                {exp.details.map((d, i) => (
-                  <li key={i}>{d}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section ref={refs["projects"]} className="py-10 px-5">
-        <motion.h2
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl font-bold mb-6 text-pink-700"
-        >
-          Projects
-        </motion.h2>
-        <div className="flex flex-wrap gap-7 justify-center">
-          {projects.map((proj, i) => (
-            <motion.div
-              key={proj.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.18 }}
-              className="w-72 bg-white p-6 rounded-xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-200 border border-purple-100"
-            >
-              <h3 className="text-xl font-bold mb-2 text-blue-900">{proj.title}</h3>
-              <p className="text-base text-gray-700">{proj.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section ref={refs["certifications"]} className="py-10 px-5">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl shadow-xl p-6 max-w-xl mx-auto border border-pink-100"
-        >
-          <h2 className="text-2xl font-bold mb-3 text-purple-700">Certifications</h2>
-          <ul className="list-disc ml-6 mb-2 text-base text-gray-800 marker:text-pink-700">
-            {certifications.map(cert => (
-              <li key={cert}>{cert}</li>
-            ))}
-          </ul>
-          <div className="text-gray-600 text-sm">More on <a href="https://linkedin.com/in/harishrsharma" className="underline text-blue-700 hover:text-pink-600 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div>
-        </motion.div>
-      </section>
-
-      {/* Contact */}
-      <section ref={refs["contact"]} className="py-10 px-5 flex flex-col items-center">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md text-center border border-purple-100"
-        >
-          <h2 className="text-2xl font-bold mb-5 text-blue-700">Contact Me</h2>
-          <div className="mb-3 text-purple-700 font-medium">
-            Germany – Open to relocate
-          </div>
-          <div className="flex flex-col items-center mb-3 text-gray-700">
-            <span className="mb-1">📞 +49 1577 400 3637</span>
-            <span>✉️ harishrsharma1405@gmail.com</span>
-          </div>
-          <div className="mt-2 flex gap-5 text-lg justify-center">
-            {contactLinks.map(link => (
+          <div className="flex gap-6 pb-16 font-mono text-sm text-slate-500">
+            <a href="mailto:harishrsharma1405@gmail.com" className="hover:text-brand-600 underline underline-offset-4">
+              Email
+            </a>
+            {contactLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.url}
-                className="text-blue-700 hover:text-pink-700 font-semibold underline"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="hover:text-brand-600 underline underline-offset-4"
               >
                 {link.label}
               </a>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </header>
+
+      {/* Stats bar */}
+      <section className="bg-ink-950 text-white py-12 px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div className="font-display font-bold text-3xl text-brand-400 mb-1">
+                {s.value}
+              </div>
+              <p className="text-sm text-slate-300">{s.label}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-6 text-center text-sm bg-gradient-to-r from-blue-100 to-purple-100 font-semibold text-gray-700">
-        &copy; {new Date().getFullYear()} Harish Sharma. All rights reserved.
-      </footer>
+      {/* About */}
+      <section ref={refs.about} className="py-20 px-6 bg-slate-50">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+          <div>
+            <SectionLabel>ABOUT</SectionLabel>
+            <h2 className="font-display font-bold text-3xl md:text-4xl leading-tight">
+              From raw tables to reporting people act on.
+            </h2>
+          </div>
+          <div className="space-y-5 text-slate-700 text-lg">
+            <p>
+              I'm a data professional who lives in the space between business
+              questions and the data that answers them — comfortable across
+              analytics, BI, data engineering, and applied ML. My day-to-day
+              spans <b>Power BI</b> (Desktop, Service, Power Query, DAX,
+              modeling), <b>advanced SQL</b>, and <b>Python</b> — building
+              dashboards, data models, pipelines, and KPI frameworks that
+              operational teams and management use to make decisions.
+            </p>
+            <p>
+              I use <b>Claude and LangChain daily</b> for AI-assisted
+              analytics — prompt engineering, RAG systems, and agentic
+              workflow automation — to ship reliable analytical code faster.
+              I'm currently finishing an <b>MSc in Web &amp; Data Science</b>{" "}
+              with a focus on machine learning and data systems.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              {aboutBadges.map((b) => (
+                <span
+                  key={b.label}
+                  className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-full px-4 py-2 text-sm font-medium"
+                >
+                  <span>{b.emoji}</span> {b.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Toolkit */}
+      <section ref={refs.toolkit} className="py-20 px-6 bg-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <SectionLabel>TOOLKIT</SectionLabel>
+          <h2 className="font-display font-bold text-3xl md:text-4xl mb-10">
+            The stack I build with
+          </h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {toolkit.map((cat) => (
+              <div
+                key={cat.title}
+                className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+              >
+                <h3 className="font-bold text-lg">{cat.title}</h3>
+                <p className="text-sm text-slate-400 mb-4">{cat.level}</p>
+                <div className="flex flex-wrap gap-2">
+                  {cat.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md px-2 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div className="bg-ink-950 text-white rounded-2xl p-6">
+              <p className="font-mono text-xs tracking-widest text-brand-400 mb-3">
+                CERTIFIED
+              </p>
+              <p className="text-slate-200">{certified.join(" · ")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section ref={refs.experience} className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <SectionLabel>EXPERIENCE</SectionLabel>
+          <h2 className="font-display font-bold text-3xl md:text-4xl mb-10">
+            Where I've delivered
+          </h2>
+          <div className="divide-y divide-slate-100">
+            {experiences.map((exp) => (
+              <motion.div
+                key={exp.company}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="grid md:grid-cols-[240px_1fr] gap-4 py-8"
+              >
+                <div>
+                  <p className="font-mono text-sm text-brand-600 mb-1">
+                    {exp.date}
+                  </p>
+                  <h3 className="font-bold text-lg">{exp.role}</h3>
+                  <p className="text-slate-400 text-sm">{exp.company}</p>
+                </div>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  {exp.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Selected Work */}
+      <section ref={refs.projects} className="py-20 px-6 bg-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <SectionLabel>SELECTED WORK</SectionLabel>
+          <h2 className="font-display font-bold text-3xl md:text-4xl mb-10">
+            Projects with measurable impact
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((proj) => (
+              <motion.div
+                key={proj.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100"
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <span className="font-mono text-xs text-slate-400">
+                    {proj.tag}
+                  </span>
+                  <span className="font-display font-bold text-brand-500">
+                    {proj.metric}
+                  </span>
+                </div>
+                <h3 className="font-bold text-xl mb-2">{proj.title}</h3>
+                <p className="text-slate-600 mb-4">{proj.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {proj.stack.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md px-2 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education & Certifications */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+          <div className="bg-slate-50 rounded-2xl p-7 border border-slate-100">
+            <SectionLabel>EDUCATION</SectionLabel>
+            <h3 className="font-bold text-lg">MSc, Web &amp; Data Science</h3>
+            <p className="text-slate-600 mb-1">
+              University of Koblenz, Germany · Expected July 2026
+            </p>
+            <p className="text-sm text-slate-400 mb-5">
+              Focus: Machine Learning, Data Systems &amp; Analytics
+            </p>
+            <hr className="border-slate-200 mb-5" />
+            <h3 className="font-bold text-lg">B.E., Computer Engineering</h3>
+            <p className="text-slate-600">
+              University of Mumbai, India · 2015 – 2019
+            </p>
+          </div>
+
+          <div className="bg-slate-50 rounded-2xl p-7 border border-slate-100">
+            <SectionLabel>CERTIFICATIONS &amp; RECOGNITION</SectionLabel>
+            <ul className="space-y-2 mb-5">
+              {certifications.map((c) => (
+                <li key={c.name} className="flex justify-between items-baseline gap-4">
+                  <span className="flex items-center gap-2 text-slate-800">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 inline-block" />
+                    {c.name}
+                  </span>
+                  <span className="text-sm text-slate-400 shrink-0">{c.year}</span>
+                </li>
+              ))}
+            </ul>
+            <hr className="border-slate-200 mb-5" />
+            <p className="text-slate-700 flex gap-3">
+              <span>🏆</span>
+              <span>
+                Recognized for quality of deliverables at{" "}
+                <b>Ugam Solutions</b>.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section ref={refs.contact} className="bg-ink-950 text-white py-20 px-6 text-center">
+        <p className="font-mono text-xs tracking-widest text-brand-400 mb-4">
+          // LET'S TALK
+        </p>
+        <h2 className="font-display font-bold text-3xl md:text-5xl mb-6 max-w-3xl mx-auto">
+          Looking for a data analyst who ships.
+        </h2>
+        <p className="text-slate-300 max-w-xl mx-auto mb-8">
+          Open to Data Analyst / BI, Analytics &amp; Data Engineering, and
+          ML/AI Engineer roles in Koblenz, Frankfurt, and remote across
+          Germany.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 mb-14">
+          <a
+            href="mailto:harishrsharma1405@gmail.com"
+            className="bg-brand-500 hover:bg-brand-600 text-ink-950 font-bold py-3 px-6 rounded-xl transition-colors"
+          >
+            harishrsharma1405@gmail.com
+          </a>
+          {contactLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-slate-600 hover:border-brand-400 font-bold py-3 px-6 rounded-xl transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <hr className="border-slate-800 max-w-3xl mx-auto mb-6" />
+        <p className="font-mono text-xs text-slate-500 mb-2">
+          linkedin.com/in/harishrsharma · github.com/Harishrsharma · Koblenz,
+          Germany
+        </p>
+        <p className="text-xs text-slate-600">
+          © {new Date().getFullYear()} Harish Sharma
+        </p>
+      </section>
     </main>
   );
 }

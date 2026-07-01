@@ -3,12 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Your custom styles, if any, after the directives */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  font-family: "Inter", sans-serif;
 }
 
-/* Optional: remove or move demo styles not needed */
+.bg-dots {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 22px 22px;
+}
