@@ -143,8 +143,9 @@ const contactLinks = [
 
 function SectionLabel({ children }) {
   return (
-    <p className="font-mono text-xs tracking-widest text-brand-600 mb-3">
-      // {children}
+    <p className="inline-flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-brand-600 mb-4">
+      <span className="w-4 h-px bg-brand-500" />
+      {children}
     </p>
   );
 }
